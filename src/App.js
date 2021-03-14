@@ -1,25 +1,200 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    answer: 0,
+    display: 0,
+    first: 0,
+    second: 0,
+    operation: null,
+    order: "first",
+  };
+
+  number = (value) => {
+    const { order } = this.state;
+    console.log(order);
+    this.setState({ display: value });
+    if (order === "first") {
+      this.setState({ first: value });
+    }
+    if (order === "second") {
+      this.setState({ second: value });
+    }
+  };
+
+  clear = () => {
+    this.setState({
+      answer: 0,
+      display: 0,
+      first: 0,
+      second: 0,
+      operation: null,
+      order: "first",
+    });
+  };
+
+  operation = (op) => {
+    switch (op) {
+      case "multiply":
+        this.setState({ operation: "multiply" });
+        this.setState({ order: "second" });
+        break;
+      case "plus":
+        this.setState({ operation: "plus" });
+        this.setState({ order: "second" });
+        break;
+      case "minus":
+        this.setState({ operation: "minus" });
+        this.setState({ order: "second" });
+        break;
+      case "divide":
+        this.setState({ operation: "divide" });
+        this.setState({ order: "second" });
+        break;
+      default:
+        break;
+    }
+  };
+
+  equals = () => {
+    const { first, second, operation } = this.state;
+    // if (operation === "multiply") {
+    //   this.setState({ display: first * second });
+    // }
+    switch (operation) {
+      case "multiply":
+        this.setState({ display: first * second });
+        break;
+      case "plus":
+        this.setState({ display: first + second });
+        break;
+      case "minus":
+        this.setState({ display: first - second });
+        break;
+      case "divide":
+        this.setState({ display: first / second });
+        break;
+      default:
+        break;
+    }
+  };
+
+  render() {
+    const { display } = this.state;
+    return (
+      <div className="d-flex justify-content-center mt-4">
+        <div className="outline set-width p-4">
+          <div className="">
+            <div className="display-answer rounded-pill mb-3">{display}</div>
+            <div id="buttons">
+              <div className="">
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.clear()}
+                >
+                  CE
+                </button>
+                <button className="btn btn-dark rounded-circle set-size m-1">
+                  C
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.operation("plus")}
+                >
+                  +
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.operation("minus")}
+                >
+                  -
+                </button>
+              </div>
+              <div className="">
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(1)}
+                >
+                  1
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(2)}
+                >
+                  2
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1 "
+                  onClick={() => this.number(3)}
+                >
+                  3
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.operation("multiply")}
+                >
+                  X
+                </button>
+              </div>
+              <div className="">
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(4)}
+                >
+                  4
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(5)}
+                >
+                  5
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(6)}
+                >
+                  6
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.operation("divide")}
+                >
+                  %
+                </button>
+              </div>
+              <div className="">
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(7)}
+                >
+                  7
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(8)}
+                >
+                  8
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.number(9)}
+                >
+                  9
+                </button>
+                <button
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.equals()}
+                >
+                  =
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
