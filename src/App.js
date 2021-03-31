@@ -7,16 +7,16 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    answer: 0,
     display: 0,
     first: 0,
     second: 0,
     operation: null,
     order: "first",
+
   };
 
   number = (value) => {
-    const { order,  first, second } = this.state;
+    const { order,  first, second, display } = this.state;
     let val = "";
     
     if (order === "first") {
@@ -35,7 +35,14 @@ class App extends Component {
       }
       this.setState({ second: val });
     }
-    this.setState({ display: val });
+    
+    if(val > 999999 || display === "ERROR"){
+      this.setState({display: "ERROR"});
+      this.setState({operation: "ERROR"})
+    } else {
+      this.setState({ display: val });
+    }
+    
   };
 
   clear = () => {
@@ -79,25 +86,34 @@ class App extends Component {
 
   equals = () => {
     const { first, second, operation } = this.state;
-    // if (operation === "multiply") {
-    //   this.setState({ display: first * second });
-    // }
+    
+    let ans;
     switch (operation) {
       case "multiply":
-        this.setState({ display: first * second });
+        ans = first * second;  
+      // this.setState({ display: first * second });
         break;
       case "plus":
-        this.setState({ display: first + second });
+        ans = first + second;  
+      // this.setState({ display: first + second });
         break;
       case "minus":
-        this.setState({ display: first - second });
+        ans = first - second;
+        // this.setState({ display: first - second });
         break;
       case "divide":
-        this.setState({ display: first / second });
+        ans = first / second;
+        // this.setState({ display: first / second });
         break;
       default:
         break;
     }
+    if (operation === "ERROR" || ans > 999999){
+      this.setState({display: "ERROR"})
+    } else {
+      this.setState({display: ans})  
+    }
+    
   };
 
   render() {
