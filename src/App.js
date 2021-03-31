@@ -16,15 +16,26 @@ class App extends Component {
   };
 
   number = (value) => {
-    const { order } = this.state;
-    console.log(order);
-    this.setState({ display: value });
+    const { order,  first, second } = this.state;
+    let val = "";
+    
     if (order === "first") {
-      this.setState({ first: value });
+      if(first === 0){
+        val = value;
+      } else {
+        val = "" + first + value 
+      }
+      this.setState({ first: val });
     }
     if (order === "second") {
-      this.setState({ second: value });
-    } 
+      if(second === 0){
+        val = value
+      } else {
+        val = "" + second + value
+      }
+      this.setState({ second: val });
+    }
+    this.setState({ display: val });
   };
 
   clear = () => {
@@ -83,9 +94,6 @@ class App extends Component {
         break;
       case "divide":
         this.setState({ display: first / second });
-        break;
-      case "ERROR":
-        this.setState({ display: "ERROR"});
         break;
       default:
         break;
