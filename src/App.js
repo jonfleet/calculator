@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+
+// Import Components
+import Button from "./components/button";
+
 import "./App.css";
 
 class App extends Component {
@@ -20,7 +24,7 @@ class App extends Component {
     }
     if (order === "second") {
       this.setState({ second: value });
-    }
+    } 
   };
 
   clear = () => {
@@ -32,6 +36,11 @@ class App extends Component {
       operation: null,
       order: "first",
     });
+    console.log("Clear Button Pushed");
+  };
+
+  handleClear = () => {
+    console.log("Clear Button Pushed");
   };
 
   operation = (op) => {
@@ -75,6 +84,9 @@ class App extends Component {
       case "divide":
         this.setState({ display: first / second });
         break;
+      case "ERROR":
+        this.setState({ display: "ERROR"});
+        break;
       default:
         break;
     }
@@ -95,9 +107,14 @@ class App extends Component {
                 >
                   CE
                 </button>
-                <button className="btn btn-dark rounded-circle set-size m-1">
+                {/* <button className="btn btn-dark rounded-circle set-size m-1">
                   C
-                </button>
+                </button> */}
+                <Button
+                  label="C"
+                  name="clear"
+                  // onClick={() => this.handleClear()}
+                />
                 <button
                   className="btn btn-dark rounded-circle set-size m-1"
                   onClick={() => this.operation("plus")}
