@@ -108,9 +108,13 @@ class App extends Component {
       default:
         break;
     }
+    
     if (operation === "ERROR" || ans > 999999){
       this.setState({display: "ERROR"})
-    } else {
+    } else if ( ans - Math.floor(ans) !== 0 ){
+      this.setState({display: ans.toString().slice(0,7) })
+    } 
+    else {
       this.setState({display: ans})  
     }
     
