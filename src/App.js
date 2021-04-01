@@ -45,7 +45,7 @@ class App extends Component {
     
   };
 
-  clear = () => {
+  clearEverything = () => {
     this.setState({
       answer: 0,
       display: 0,
@@ -54,11 +54,22 @@ class App extends Component {
       operation: null,
       order: "first",
     });
-    console.log("Clear Button Pushed");
+    
   };
 
-  handleClear = () => {
-    console.log("Clear Button Pushed");
+  clear = () => {
+    const {order} = this.state
+    if(order === "first"){
+      this.setState({
+        first: 0,
+        display: 0 
+      })
+    } else {
+      this.setState({
+        second: 0,
+        display: 0,
+      })
+    }    
   };
 
   operation = (op) => {
@@ -136,18 +147,21 @@ class App extends Component {
               <div className="">
                 <button
                   className="btn btn-dark rounded-circle set-size m-1"
-                  onClick={() => this.clear()}
+                  onClick={() => this.clearEverything()}
                 >
                   CE
                 </button>
-                {/* <button className="btn btn-dark rounded-circle set-size m-1">
+                <button 
+                  className="btn btn-dark rounded-circle set-size m-1"
+                  onClick={() => this.clear()}
+                >
                   C
-                </button> */}
-                <Button
+                </button>
+                {/* <Button
                   label="C"
                   name="clear"
-                  // onClick={() => this.handleClear()}
-                />
+                  onClick={() => this.clear()}
+                /> */}
                 <button
                   className="btn btn-dark rounded-circle set-size m-1"
                   onClick={() => this.operation("plus")}
