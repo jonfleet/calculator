@@ -108,7 +108,7 @@ class App extends Component {
       default:
         break;
     }
-    
+
     if (operation === "ERROR" || ans > 999999){
       this.setState({display: "ERROR"})
     } else if ( ans - Math.floor(ans) !== 0 ){
@@ -117,6 +117,11 @@ class App extends Component {
     else {
       this.setState({display: ans})  
     }
+
+    
+    this.setState({first: 0})
+    this.setState({second: 0})
+    this.setState({order: "first"})
     
   };
 
