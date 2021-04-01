@@ -37,8 +37,10 @@ class App extends Component {
     }
     
     if(val > 999999 || display === "ERROR"){
-      this.setState({display: "ERROR"});
-      this.setState({operation: "ERROR"})
+      this.setState({
+        display: "ERROR", 
+        operation: "ERROR"
+      });
     } else {
       this.setState({ display: val });
     }
@@ -75,20 +77,28 @@ class App extends Component {
   operation = (op) => {
     switch (op) {
       case "multiply":
-        this.setState({ operation: "multiply" });
-        this.setState({ order: "second" });
+        this.setState({ 
+          operation: "multiply", 
+          order: "second"
+        });
         break;
       case "plus":
-        this.setState({ operation: "plus" });
-        this.setState({ order: "second" });
+        this.setState({ 
+          operation: "plus",
+          order: "second"
+        });
         break;
       case "minus":
-        this.setState({ operation: "minus" });
-        this.setState({ order: "second" });
+        this.setState({ 
+          operation: "minus",
+          order: "second"
+        });
         break;
       case "divide":
-        this.setState({ operation: "divide" });
-        this.setState({ order: "second" });
+        this.setState({ 
+          operation: "divide",
+          order: "second"
+        });
         break;
       default:
         break;
@@ -130,9 +140,12 @@ class App extends Component {
     }
 
     
-    this.setState({first: 0})
-    this.setState({second: 0})
-    this.setState({order: "first"})
+    this.setState({
+      first: 0,
+      second: 0,
+      order: "first"
+    })
+    
     
   };
 
