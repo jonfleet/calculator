@@ -25,7 +25,7 @@ class App extends Component {
       } else {
         val = "" + first + value 
       }
-      this.setState({ first: val });
+      this.setState({ first: parseInt(val) });
     }
     if (order === "second") {
       if(second === 0){
@@ -33,7 +33,7 @@ class App extends Component {
       } else {
         val = "" + second + value
       }
-      this.setState({ second: val });
+      this.setState({ second: parseInt(val) });
     }
     
     if(val > 999999 || display === "ERROR"){
