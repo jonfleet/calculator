@@ -1,11 +1,5 @@
-import { render, screen, fireEvent, container, className } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
-
-// test('renders initial screen 0', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/0/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
 
 test('Addition', () => {
   render(<App/>);
