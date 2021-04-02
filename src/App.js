@@ -112,19 +112,15 @@ class App extends Component {
     switch (operation) {
       case "multiply":
         ans = first * second;  
-      // this.setState({ display: first * second });
         break;
       case "plus":
         ans = first + second;  
-      // this.setState({ display: first + second });
         break;
       case "minus":
         ans = first - second;
-        // this.setState({ display: first - second });
         break;
       case "divide":
         ans = first / second;
-        // this.setState({ display: first / second });
         break;
       default:
         break;
@@ -155,7 +151,7 @@ class App extends Component {
       <div className="d-flex justify-content-center mt-4">
         <div className="outline set-width p-4">
           <div className="">
-            <div className="display-answer rounded-pill mb-3">{display}</div>
+            <div label="display" className="display-answer rounded-pill mb-3">{display}</div>
             <div id="buttons">
               <div className="">
                 <button
